@@ -2,7 +2,6 @@ import numpy as np
 import joblib
 import shap
 
-# Load model or create dummy model
 try:
     model = joblib.load("sales_prediction_model.pkl")
 except:
@@ -23,3 +22,4 @@ def get_shap_values(features):
     explainer = shap.Explainer(model.predict, background)
     shap_values = explainer(np.array([features]))
     return shap_values, explainer
+
