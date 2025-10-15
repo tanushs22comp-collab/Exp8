@@ -10,8 +10,8 @@ except:
     model.n_features_in_ = 4
     model.predict = lambda X: np.array([int(np.random.randint(1, 100)) for _ in range(len(X))])
 
-# Dummy background dataset for SHAP
-background = np.random.rand(100, 4) * 100  # 100 samples, 4 features
+
+background = np.random.rand(100, 4) * 100 
 
 def predict_sales(sale_price, rating, review_posted, sold_products):
     features = np.array([[sale_price, rating, review_posted, sold_products]])
@@ -22,4 +22,5 @@ def get_shap_values(features):
     explainer = shap.Explainer(model.predict, background)
     shap_values = explainer(np.array([features]))
     return shap_values, explainer
+
 
