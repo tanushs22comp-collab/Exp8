@@ -28,10 +28,10 @@ st.title("Nike Sales Prediction Dashboard ")
 
 # ---- SIDEBAR INPUTS ----
 st.sidebar.header("Input Features")
-sale_price = st.sidebar.number_input("Sale Price", min_value=0, value=9995)
-rating = st.sidebar.slider("Rating", 1, 5, value=3)
-review_posted = st.sidebar.number_input("Reviews Posted", min_value=0, value=10)
-sold_products = st.sidebar.number_input("Sold Products", min_value=0, value=5)
+sale_price = st.sidebar.number_input("Sale Price", min_value=0, value=0)
+rating = st.sidebar.slider("Rating", 1, 5, value=0)
+review_posted = st.sidebar.number_input("Reviews Posted", min_value=0, value=0)
+sold_products = st.sidebar.number_input("Sold Products", min_value=0, value=0)
 
 # ---- PREDICTION ----
 if st.button("Predict Sales"):
@@ -57,3 +57,4 @@ metrics_df = pd.DataFrame({
     "Value": [sale_price, rating, review_posted, sold_products]
 })
 st.table(metrics_df)
+
