@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
-import shap
 import matplotlib.pyplot as plt
+import shap
 from model_utils import predict_sales, get_shap_values
 
 # ---- PAGE CONFIG ----
@@ -18,6 +18,7 @@ st.markdown(
     body { background-color: #0E1117; color: #FAFAFA; }
     .stButton>button { background-color: #FF6F00; color: white; border-radius: 10px; }
     .stSidebar { background-color: #1E1E1E; color: white; }
+    .stMarkdown { color: #FAFAFA; }
     </style>
     """,
     unsafe_allow_html=True,
@@ -41,7 +42,11 @@ if st.button("Predict Sales"):
     shap_values, explainer = get_shap_values([sale_price, rating, review_posted, sold_products])
     st.subheader("Feature Importance (SHAP)")
     fig, ax = plt.subplots()
-    shap.summary_plot(shap_values, explainer.data, show=False)
+    shap.summary_plot(
+        shap_values,
+        feature_names=["Sale Price", "Rating", "Reviews Posted", "Sold Products"],
+        show=False
+    )
     st.pyplot(fig)
 
 # ---- METRICS TABLE ----
