@@ -24,7 +24,7 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-st.title("🔥 Nike Sales Prediction Dashboard (Dark Mode)")
+st.title("Nike Sales Prediction Dashboard ")
 
 # ---- SIDEBAR INPUTS ----
 st.sidebar.header("Input Features")
@@ -57,11 +57,3 @@ metrics_df = pd.DataFrame({
     "Value": [sale_price, rating, review_posted, sold_products]
 })
 st.table(metrics_df)
-
-# ---- RESPONSIBLE AI ----
-st.markdown("---")
-st.markdown("### Responsible AI Considerations")
-st.markdown("- **Fairness:** Checked across product categories")
-st.markdown("- **Privacy:** No PII used")
-st.markdown("- **Transparency:** SHAP plots included")
-st.markdown("- **Monitoring:** Drift checks recommended, retraining plan defined")
