@@ -90,7 +90,8 @@ if st.button("Predict Sales"):
 st.markdown("---")
 st.subheader("Input Metrics")
 metrics_df = pd.DataFrame({
-    "Feature": ["Sale Price", "Rating", "Reviews Posted", "Sold Products"],
+    "Feature": ["Predicted Sales", "Rating", "Reviews Posted", "Sold Products"],
     "Value": [sale_price, rating, review_posted, sold_products]
 })
 st.table(metrics_df)
+
