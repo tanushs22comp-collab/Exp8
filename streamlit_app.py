@@ -1,5 +1,6 @@
 import streamlit as st
 import pandas as pd
+import numpy as np
 import matplotlib.pyplot as plt
 import shap
 from model_utils import predict_sales, get_shap_values, model, background
@@ -24,7 +25,7 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-st.title("Nike Sales Prediction Dashboard ")
+st.title("Nike Sales Prediction Dashboard")
 
 # ---- SIDEBAR INPUTS ----
 st.sidebar.header("Input Features")
@@ -35,11 +36,14 @@ sold_products = st.sidebar.number_input("Sold Products", min_value=0, value=0)
 
 # ---- PREDICTION & SHAP ----
 if st.button("Predict Sales"):
-    features = [sale_price, rating, review_posted, sold_products]
+    # Create 2D array for features
+    features = np.array([sale_price, rating, review_posted, sold_products]).reshape(1, -1)
     
-    prediction = predict_sales(*features)
+    # Predict sales (unpack features as args)
+    prediction = predict_sales(*features[0])
     st.success(f"Predicted Future Sales: {prediction}")
 
+    # Get SHAP values
     shap_values, explainer = get_shap_values(features, model, background)
     
     st.subheader("Feature Importance (SHAP)")
@@ -48,7 +52,7 @@ if st.button("Predict Sales"):
     fig, ax = plt.subplots()
     shap.summary_plot(
         shap_values.values,
-        features=[features],
+        features=features,
         feature_names=["Sale Price", "Rating", "Reviews Posted", "Sold Products"],
         plot_type="bar",
         show=False,
