@@ -77,7 +77,7 @@ if st.button("Predict Sales"):
         shap.summary_plot(
             shap_values,
             features=features,
-            feature_names=["Sale Price", "Rating", "Reviews Posted", "Sold Products"],
+            feature_names=["Predicted Sales", "Rating", "Reviews Posted", "Sold Products"],
             plot_type="bar",
             show=False,
         )
@@ -94,4 +94,5 @@ metrics_df = pd.DataFrame({
     "Value": [sale_price, rating, review_posted, sold_products]
 })
 st.table(metrics_df)
+
 
